@@ -1,7 +1,7 @@
 import React from "react";
 import population from "./population";
 
-export const Table = ({ headers, dates, columns, f }) => {
+export const Table = ({headers, dates, columns, f}) => {
   return (
     <div
       className="table"
@@ -10,8 +10,8 @@ export const Table = ({ headers, dates, columns, f }) => {
         "gridTemplateRows": `repeat(${dates.length + 1}, 1fr)`,
       }}
     >
-      <span className="date" />
-      {dates.reverse().map((date) => (
+      <span className="date"/>
+      {dates.slice().reverse().map((date) => (
         <span className="date">{date}</span>
       ))}
       {columns.map((column, colIndex) => (
@@ -22,7 +22,7 @@ export const Table = ({ headers, dates, columns, f }) => {
             let x = f(a, population[colIndex]);
             if (x === undefined) return <span> </span>;
             return <span className={color(x)}>{Math.round(x)}</span>;
-          }).reverse()}
+          }).slice().reverse()}
         </>
       ))}
     </div>
