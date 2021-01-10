@@ -20,7 +20,7 @@ function App() {
   const [json, setJson] = useState({Totalt_antal_fall: {}});
 
   useEffect(() => {
-    fetch("/.netlify/functions/fauna").then(
+    fetch("/.netlify/functions/covid19-api").then(
       (faunaResp) => {
         if (!faunaResp.ok) {
           return faunaResp.text().then((error) => {
@@ -40,22 +40,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <SevenDayPerMillion json={json}/>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SevenDayPerMillion json={json}/>
   );
 }
 

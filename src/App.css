@@ -1,38 +1,114 @@
-.App {
+.table {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.table .header {
+  grid-row: 1;
+}
+
+.table span {
+  overflow: hidden;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chart {
+  display: grid;
+  grid-template-columns: max-content auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.chart .y-values {
+  grid-column: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  margin: 12px;
+}
+
+.chart svg {
+  grid-column: 2;
+  height: 600px;
+  border: black 2px solid;
+}
+
+.chart svg polyline {
+  stroke-width: 1.5;
+}
+
+.chart line {
+  stroke: #bbb;
+  stroke-width: 1;
+}
+
+.color0 {
+  background-color: #67bfc6;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.color-70 {
+  background-color: #006fb2;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.color-50 {
+  background-color: #2296ca;
+  color: white;
+}
+
+.color-30 {
+  background-color: #6fbfd9;
+}
+
+.color-10 {
+  background-color: #a9d8ec;
+}
+
+.color10 {
+  background-color: #febfa6;
+}
+
+.color30 {
+  background-color: #ff8d6e;
+}
+
+.color50 {
+  background-color: #f0484e;
+  color: white;
+}
+
+.color70 {
+  background-color: #bf0336;
+  color: white;
+}
+
+.color1 {
+  background-color: #f5d664;
+}
+
+.color20 {
+  background-color: #f1b73c;
+}
+
+.color60 {
+  background-color: #e79402;
+}
+
+.color120 {
+  background-color: #da6500;
+  color: white;
+}
+
+.color240 {
+  background-color: #d23f00;
+  color: white;
+}
+
+.color480 {
+  background-color: #b61c00;
+  color: white;
+}
+
+.color960 {
+  background-color: #870202;
+  color: white;
 }

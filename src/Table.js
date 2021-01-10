@@ -6,8 +6,8 @@ export const Table = ({ headers, dates, columns, f }) => {
     <div
       className="table"
       style={{
-        "grid-template-columns": `max-content repeat(${headers.length}, 1fr)`,
-        "grid-template-rows": `repeat(${dates.length + 1}, 1fr)`,
+        "gridTemplateColumns": `max-content repeat(${headers.length}, 1fr)`,
+        "gridTemplateRows": `repeat(${dates.length + 1}, 1fr)`,
       }}
     >
       <span className="date" />
