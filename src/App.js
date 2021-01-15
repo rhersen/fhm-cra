@@ -56,6 +56,20 @@ const WeeklyChange = ({ cases }) => {
   );
 };
 
+const Deaths = ({ deaths }) => {
+  let filtered = Object.entries(deaths).filter(([, count]) => count > 88);
+  filtered.sort(([, count1], [, count2]) => count2 - count1);
+  return (
+    <ol>
+      {filtered.map(([day, count]) => (
+        <li>
+          {day}: {count}
+        </li>
+      ))}
+    </ol>
+  );
+};
+
 const Chart = ({ cases, region }) => {
   let dates = Object.keys(cases.Totalt_antal_fall);
   let headers = Object.keys(cases);
@@ -109,6 +123,7 @@ const Chart = ({ cases, region }) => {
 
 function App() {
   const [cases, setCases] = useState({ Totalt_antal_fall: {} });
+  const [deaths, setDeaths] = useState({});
   const [region, setRegion] = useState("0");
 
   useEffect(() => {
@@ -121,6 +136,23 @@ function App() {
         return faunaResp.json().then(
           (json) => {
             setCases(json);
+          },
+          (error) => {
+            console.log("error", error);
+          }
+        );
+      }
+    );
+
+    fetch("/.netlify/functions/covid19-api?endpoint=deaths").then(
+      (faunaResp) => {
+        if (!faunaResp.ok) {
+          return faunaResp.text().then((error) => {});
+        }
+
+        return faunaResp.json().then(
+          (json) => {
+            setDeaths(json);
           },
           (error) => {
             console.log("error", error);
@@ -149,6 +181,9 @@ function App() {
             </Link>
           </li>
           <li>
+            <Link to="/deaths">deaths</Link>
+          </li>
+          <li>
             <Link to="/chart">chart of 7-day average</Link>
           </li>
         </ul>
@@ -162,6 +197,9 @@ function App() {
         </Route>
         <Route path="/change">
           <WeeklyChange cases={cases} />
+        </Route>
+        <Route path="/deaths">
+          <Deaths deaths={deaths} />
         </Route>
         <Route path="/chart">
           <input
