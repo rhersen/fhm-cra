@@ -1,8 +1,8 @@
 /* eslint-disable */
 const fetch = require('node-fetch')
-exports.handler = async function(event, context) {
+exports.handler = async function({queryStringParameters}, context) {
   try {
-    const response = await fetch('http://linode.hersen.name:3000/cases', {
+    const response = await fetch(`http://linode.hersen.name:3000/${queryStringParameters.endpoint}`, {
       headers: { Accept: 'application/json' }
     })
     if (!response.ok) {
