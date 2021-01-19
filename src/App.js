@@ -61,6 +61,7 @@ const Deaths = ({ deaths }) => {
   filtered.sort(([, count1], [, count2]) => count2 - count1);
   return (
     <ol>
+      <li>total: {Object.values(deaths).reduce((a, b) => a + b, 0)}</li>
       {filtered.map(([day, count]) => (
         <li>
           {day}: {count}
